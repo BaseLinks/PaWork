@@ -8,7 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    campus:["学院路校区","沙河校区"],
     phone:"",
     deliver_address:"",
     index:0,
@@ -33,7 +32,7 @@ Page({
     if (app.globalData.login == false) {
       wx.showModal({
         title: '未注册',
-        content: '您还没有注册航概校园邦，是否前往注册',
+        content: '您还没有趴活，是否前往注册',
         success (res) {
           if (res.confirm) {
             wx.redirectTo({
@@ -53,7 +52,6 @@ Page({
       _openid: app.globalData.openid
     }).get().then(res => {
       this.setData({
-        index: app.globalData.campus,
         phone: res.data[0].phone,
         deliver_address: res.data[0].address,
       })

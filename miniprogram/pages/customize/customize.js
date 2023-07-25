@@ -9,11 +9,29 @@ Page({
   data: {
     phone: "",
     product: "",
-    reach_address: "",
+    targart_address: "",
     reserved_time:"",
     remark: "",
     fee: '',
   },
+
+
+/**
+ * 获得位置
+ */
+  getTargartLocation: function (type) {
+    var _this = this;
+    wx.chooseLocation({
+      success: function (res) {
+        _this.setData({
+          targart_address : res.name + res.address
+        })
+      },
+      complete(r){
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -61,7 +79,7 @@ Page({
   },
   update_reach_address: function (e) {
     this.setData({
-      reach_address: e.detail.detail.value
+      targart_address: e.detail.detail.value
     })
   },
   update_remark: function (e) {
@@ -92,7 +110,7 @@ Page({
       })
       return
     }
-    if (that.data.reach_address == "") {
+    if (that.data.targart_address == "") {
       wx.showModal({
         title: '错误',
         content: '请填写任务地点',
@@ -132,14 +150,6 @@ Page({
       })
       return
     }
-    if (that.data.fee > 20 || that.data.fee < 2) {
-      wx.showModal({
-        title: '错误',
-        content: '小费限制2-20元',
-        showCancel: false,
-      })
-      return
-    }
     wx.showLoading({
       title: '请稍后',
       mask: 'true',
@@ -149,7 +159,7 @@ Page({
       {
         data: {
           product: that.data.product,
-          reach_address: that.data.reach_address,
+          targart_address: that.data.targart_address,
           fee: that.data.fee,
           phone: that.data.phone,
           remarks: that.data.remark,
@@ -161,7 +171,6 @@ Page({
           status: "0",
           complete: "0",
           form_id: e.detail.formId,
-          campus: app.globalData.campus,
         },
         success: function () {
           wx.hideLoading()

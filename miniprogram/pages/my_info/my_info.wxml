@@ -6,15 +6,6 @@
 <view style="height:30rpx"></view>
 <i-card title="个人信息" extra="" class="" thumb="../../my_info/info.svg">
   <view slot="content" class="express_content">
-    <i-row class="">
-      <i-col span="8">
-        <view class="list_cell">
-          <wux-icon type="md-school" size="20" color="#80848f" style="padding-right:15rpx" />当前校区</view>
-      </i-col>
-      <i-col span="16" offset="0">
-        <view class="list_cell">{{campus[index]}}</view>
-      </i-col>
-    </i-row>
     <i-row>
       <i-col span="8">
         <view class="list_cell">
@@ -43,7 +34,7 @@
   <view slot="content">
     <i-row>
       <i-col span="24">
-        <text class="card_text">你在北航校园邦</text>
+        <text class="card_text">你在趴活</text>
       </i-col>
     </i-row>
     <i-row>

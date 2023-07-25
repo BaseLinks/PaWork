@@ -59,7 +59,8 @@ Page({
       that.setData(
         {
           phone:res.data[0].phone,
-          deliver_address:res.data[0].address
+          targart_address:res.data[0].address,
+          deliver_address: res.data[0].address_detail,
         }
       )
     })
@@ -109,6 +110,7 @@ Page({
     })
   },
   order_submit: function (e) {
+    console.log(this.data)
     const that=this
     if (app.globalData.login == false) {
       wx.showModal({
@@ -167,14 +169,6 @@ Page({
       })
       return
     }
-    // if (that.data.fee > 20 || that.data.fee < 2) {
-    //   wx.showModal({
-    //     title: '错误',
-    //     content: '小费限制2-20元',
-    //     showCancel: false,
-    //   })
-    //   return
-    // }
     wx.showLoading({
       title: '请稍后',
       mask: 'true',
@@ -184,7 +178,8 @@ Page({
         data: {
           product: that.data.company,
           reach_address: that.data.reach_address,
-          deliver_address:that.data.deliver_address,
+          address:that.data.deliver_address,
+          address_detail:that.data.address_detail,
           fee: that.data.fee,
           phone: that.data.phone,
           remarks: that.data.remark,
@@ -195,8 +190,7 @@ Page({
           type:1,
           status: "0",
           complete: "0",
-          form_id: e.detail.formId,
-          campus:app.globalData.campus,
+          form_id: e.detail.formId
         },
         success: function () {
           wx.hideLoading()

@@ -11,9 +11,46 @@ Page({
     product: "",
     reach_address: "",
     remark: "",
-    deliver_address: "",
+    address: "",
+    address_detail: '',
     fee: '',
   },
+
+
+
+  /**
+   * 获得地址
+   */
+  getPackLocation: function (type) {
+    var _this = this;
+    wx.chooseLocation({
+      success: function (res) {
+        _this.setData({
+          reach_address : res.name + res.address
+        })
+      },
+      cancel: function() {
+      },
+      fail: function () {
+        
+      },
+      complete(r){
+      }
+    })
+  },
+  getTargartLocation: function (type) {
+    var _this = this;
+    wx.chooseLocation({
+      success: function (res) {
+        _this.setData({
+          address : res.name + res.address
+        })
+      },
+      complete(r){
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -26,7 +63,8 @@ Page({
       that.setData(
         {
           phone: res.data[0].phone,
-          deliver_address: res.data[0].address
+          address: res.data[0].address,
+          address_detail: res.data[0].address_detail
         }
       )
     })
@@ -67,7 +105,12 @@ Page({
   },
   update_deliver_address: function (e) {
     this.setData({
-      deliver_address: e.detail.detail.value
+      address: e.detail.detail.value
+    })
+  },
+  update_address_detail: function(e) {
+    this.setData({
+      address_detail: e.detail.detail.value
     })
   },
   update_fee: function (e) {
@@ -109,7 +152,7 @@ Page({
       })
       return
     }
-    if (that.data.deliver_address == "") {
+    if (that.data.address == "") {
       wx.showModal({
         title: '错误',
         content: '请填写送货地址',
@@ -143,7 +186,7 @@ Page({
         data: {
           product: that.data.product,
           reach_address: that.data.reach_address,
-          deliver_address: that.data.deliver_address,
+          address: that.data.address,
           fee: that.data.fee,
           phone: that.data.phone,
           remarks: that.data.remark,

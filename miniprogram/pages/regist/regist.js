@@ -57,14 +57,6 @@ Page({
    * 注册 
    */
   regist: function (e) {
-    if (e.detail.value.nickname == "") {
-      wx.showModal({
-        title: '错误',
-        content: '请输入昵称',
-        showCancel: false,
-      })
-      return
-    }
     if (e.detail.value.name == "") {
       wx.showModal({
         title: '错误',
@@ -107,10 +99,10 @@ Page({
     db.collection('user_info').add(
       {
         data: {
-          nickname: e.detail.value.nickname,
           name: e.detail.value.name,
           phone: e.detail.value.phone,
           address: e.detail.value.address,
+          address_detail: e.detail.value.address_detail,
           createtime: db.serverDate(),
           ban_time: db.serverDate({
             offset: -60 * 60 * 1000

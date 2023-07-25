@@ -8,6 +8,8 @@ var access_token
 var request = require('request')
 // 云函数入口函数
 exports.main = async(event, context) => {
+  console.log("event" + event)
+
   var e = await db.collection('order').where({
       _id: event.id
     })

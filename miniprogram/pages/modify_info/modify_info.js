@@ -9,10 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    campus: ["学院路校区", "沙河校区"],
     phone: "",
-    deliver_address: "",
-    index: 0,
+    address: "",
+    address_detail: ""
   },
 
   /**
@@ -42,9 +41,9 @@ Page({
       _openid: app.globalData.openid
     }).get().then(res => {
       this.setData({
-        index: res.data[0].campus,
         phone: res.data[0].phone,
-        deliver_address: res.data[0].address,
+        address: res.data[0].address,
+        address_detail: res.data[0].address_detail
       })
       id = res.data[0]._id
       wx.hideLoading()
